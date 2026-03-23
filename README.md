@@ -10,14 +10,13 @@ Aplicación web desarrollada en Front End que permite publicar, visualizar y eli
 - Crear comentarios (POST)
 - Eliminar comentarios (DELETE)
 - Ordenar comentarios del más reciente al más antiguo
-
+- Interfaz tipo cards con scroll
+  
 Validaciones en formulario:
 - Nombre obligatorio
 - Mensaje mínimo de 5 caracteres
 - Confirmación antes de eliminar comentarios
-  
-- Interfaz tipo cards con scroll
-  
+
 ---
 
 # Tecnologías utilizdas
