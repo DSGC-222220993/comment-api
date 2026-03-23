@@ -1,5 +1,6 @@
 // online
 const API_URL = "https://69c15cd6085e1a9fae40d5fc.mockapi.io/comments";
+
 // local 
 // const API_URL = "http://localhost:3000/comments";
 
@@ -8,10 +9,22 @@ const btnPost = document.getElementById("btnPost");
 const usernameInput = document.getElementById("username");
 const messageInput = document.getElementById("message");
 const emptyMsg = document.getElementById("emptyMsg");
+const notifications = document.getElementById("notifications");
+
+function showMessage(text, type = "error") {
+  const msg = document.createElement("div");
+  msg.classList.add("notification", type);
+  msg.textContent = text;
+
+  notifications.appendChild(msg);
+
+  setTimeout(() => {
+    msg.remove();
+  }, 10000);
+}
 
 //API
-
-
+//get
 async function getComments() {
   try {
     const res = await fetch(API_URL);
@@ -21,7 +34,7 @@ async function getComments() {
     console.error("Error al obtener comentarios", error);
   }
 }
-
+//post
 async function createComment(comment) {
   try {
     await fetch(API_URL, {
@@ -33,7 +46,7 @@ async function createComment(comment) {
     console.error("Error al crear comentario", error);
   }
 }
-
+//delete
 async function deleteComment(id) {
   try {
     await fetch(`${API_URL}/${id}`, {
@@ -79,14 +92,41 @@ function renderComments(comments) {
       `;
 
       card.querySelector("button").addEventListener("click", async () => {
-        if (confirm("¿Eliminar comentario?")) {
-          await deleteComment(comment.id);
-          loadComments();
-        }
+        showConfirm(card, async () => {
+        await deleteComment(comment.id);
+        loadComments();
+        });
       });
 
       container.appendChild(card);
     });
+}
+
+function showConfirm(parent, onConfirm) {
+  // evitar duplicados
+  if (parent.querySelector(".confirm-box")) return;
+
+  const box = document.createElement("div");
+  box.classList.add("confirm-box");
+
+  box.innerHTML = `
+    <p>¿Seguro que deseas eliminar?</p>
+    <div class="confirm-actions">
+      <button class="btn-yes">Sí</button>
+      <button class="btn-no">No</button>
+    </div>
+  `;
+
+  parent.appendChild(box);
+
+  box.querySelector(".btn-yes").addEventListener("click", async () => {
+    await onConfirm();
+    box.remove();
+  });
+
+  box.querySelector(".btn-no").addEventListener("click", () => {
+    box.remove();
+  });
 }
 
 //logica
@@ -100,12 +140,12 @@ btnPost.addEventListener("click", async () => {
   const message = messageInput.value.trim();
 
   if (!username) {
-    alert("El nombre es obligatorio");
+    showMessage("El nombre es obligatorio");
     return;
   }
 
   if (message.length < 5) {
-    alert("El mensaje debe tener al menos 5 caracteres");
+    showMessage("El mensaje debe tener al menos 5 caracteres");
     return;
   }
 
@@ -116,6 +156,8 @@ btnPost.addEventListener("click", async () => {
   };
 
   await createComment(newComment);
+  
+  showMessage("Comentario publicado", "success");
 
   usernameInput.value = "";
   messageInput.value = "";
