@@ -1,8 +1,8 @@
 // online
-const API_URL = "https://69c15cd6085e1a9fae40d5fc.mockapi.io/comments";
+//const API_URL = "https://69c15cd6085e1a9fae40d5fc.mockapi.io/comments";
 
 // local 
-// const API_URL = "http://localhost:3000/comments";
+const API_URL = "http://localhost:3000/comments";
 
 const container = document.getElementById("commentsContainer");
 const btnPost = document.getElementById("btnPost");
@@ -23,7 +23,7 @@ function showMessage(text, type = "error") {
   }, 10000);
 }
 
-//API
+//llamadas API
 //get
 async function getComments() {
   try {

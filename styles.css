@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  background: #f2f5f9;
+  background: #a0cbff;
   display: flex;
   justify-content: center;
 }
@@ -63,6 +63,7 @@ button:hover {
   border-radius: 10px;
   margin-bottom: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
 .card-header {
@@ -74,6 +75,9 @@ button:hover {
 
 .card p {
   margin: 5px 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .delete-btn {

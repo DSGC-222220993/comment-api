@@ -11,6 +11,18 @@
       "message": "Hello World!",
       "date": "2026-03-23T15:27:48.032Z",
       "id": "LyogJ6fEFnE"
+    },
+    {
+      "username": "dsgc106",
+      "message": "123 salvación para todos mis amigos",
+      "date": "2026-03-25T16:58:21.764Z",
+      "id": "Wb3h5v9nO-Y"
+    },
+    {
+      "username": "xd",
+      "message": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "date": "2026-03-26T17:14:27.603Z",
+      "id": "_rS7AC7PkaY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
